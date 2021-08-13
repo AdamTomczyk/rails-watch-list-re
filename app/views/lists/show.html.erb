@@ -1,0 +1,38 @@
+<div class ="container">
+  <div class=row>
+    <div class=col-12>
+
+  <h1><%= "#{@list.name} list"%></h1>
+  <ol>
+    <%@list.movies.each do |movie|%>
+      <li><%= movie.title %></li>
+    <%end%>
+  </ol>
+
+  <h3><%= link_to "Add movie to list", new_list_bookmark_path(@list.id)%></h3>
+  <h3><%= link_to "Return to all lists", root_path %> </h3>
+
+
+  <h3>Reviews</h3>
+
+  <ol>
+    <%@list.reviews.each do |review|%>
+      <li><%= review.comment %> || <%= review.rating %> </li>
+    <%end%>
+  </ol>
+
+
+
+    </div>
+
+    <div class="col-12">
+        <h5>Add your review</h5>
+        <%= simple_form_for [@list, @review] do |f| %>
+          <%= f.input :comment, placeholder: 'Add your review here...' %>
+          <%= f.input :rating %>
+          <%= f.submit class:'btn btn-flat' %>
+        <% end %>
+
+    </div>
+  </div>
+</div>
